@@ -6,6 +6,6 @@ COPY . /app
 
 EXPOSE 80
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r ./requirements.txt
 
-CMD ["main.py"]
+CMD ["python", "main.py"]
