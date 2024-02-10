@@ -31,8 +31,8 @@ def parse():
                 link = item.link.replace("diff", "oldid")
                 if link in savedLinks:
                     continue
-                # bot.send_message(chat_id=channel, text=link)
-                print("save new link {} to file".format(link))
+                bot.send_message(chat_id=channel, text=link)
+                print("Link {} was sent".format(link))
                 file.write(link + "\n")
                 i = i + 1
                 sleep(3)
