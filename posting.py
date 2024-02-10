@@ -10,7 +10,13 @@ channel = os.getenv("CHANNEL")
 filename = os.getenv("FILE")
 
 
-def parse_start():
+def start_parsing():
+    while True:
+        parse()
+        sleep(10)
+
+
+def parse():
     try:
         rss_url = "https://commons.wikimedia.org/w/api.php?action=feedcontributions&user=Engelberthumperdink&newonly=1&hideminor=1&tagfilter%5B0%5D=uploadwizard&namespace=6&feedformat=rss"
         while True:
@@ -30,11 +36,8 @@ def parse_start():
                 file.write(link + "\n")
                 i = i + 1
                 sleep(3)
-            print(
-                "Published {} new links".format(i)
-                if i > 0
-                else "No new links published"
-            )
+            if i > 0:
+                print("Published {} new links".format(i))
             file.close()
             sleep(20)
     except Exception as e:
@@ -42,8 +45,3 @@ def parse_start():
     finally:
         print("Closing file")
         file.close()
-
-
-while True:
-    parse_start()
-    sleep(10)
